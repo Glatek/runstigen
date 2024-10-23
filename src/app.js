@@ -1,3 +1,6 @@
+import 'leaflet';
+import 'leaflet.markercluster';
+
 import './components/lantmateriet-karta.js';
 import './components/folklore-article.js';
 

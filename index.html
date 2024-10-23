@@ -1,53 +1,45 @@
 <!DOCTYPE html>
 <html lang="sv">
-<head>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link rel="preload" href="data/sgog/s/collection.json" as="fetch">
-  <link rel="preload" href="dist/components/folklore-article.css" as="style">
-  <link rel="preload" href="dist/components/folklore-article.js" as="script">
-  <link rel="preload" href="dist/components/lantmateriet-karta.js" as="script">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-  <title>Runstigen</title>
-
-  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-    crossorigin=""></script>
-  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="not all" onload="if (media != 'all') media = 'all'">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Muli:wght@300;400&display=swap" media="not all" onload="if (media != 'all') media = 'all'">
-
-  <link rel="stylesheet" href="app.css">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-  <link rel="manifest" href="manifest.json">
-  <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#1d1d1b">
-  <link rel="shortcut icon" href="img/favicon.ico">
-  <meta name="theme-color" content="#1d1d1b">
-  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital@0;1&display=swap" rel="stylesheet">
-</head>
-<body>
-  <lantmateriet-karta></lantmateriet-karta>
-  <glaskogencard-buy></glaskogencard-buy>
-  <folklore-article></folklore-article>
-  <script type="importmap">
-  {
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preload" href="data/sgog/s/collection.json" as="fetch">
+    <link rel="preload" href="dist/libs/webact.js" as="script">
+    <link rel="preload" href="dist/components/folklore-article.js" as="script">
+    <link rel="preload" href="dist/components/folklore-article.css" as="style">
+    <link rel="preload" href="dist/components/lantmateriet-karta.js" as="script">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <title>Runstigen</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="not all" onload="if (media != 'all') media = 'all'">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Muli:wght@300;400&display=swap" media="not all" onload="if (media != 'all') media = 'all'">
+    <link rel="stylesheet" href="dist/app.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#1d1d1b">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <meta name="theme-color" content="#1d1d1b">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital@0;1&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <lantmateriet-karta></lantmateriet-karta>
+    <glaskogencard-buy></glaskogencard-buy>
+    <folklore-article></folklore-article>
+    <script type="importmap">
+      {
     "imports": {
-      "webact": "/dist/libs/webact.js"
+      "webact": "/dist/libs/webact.js",
+      "leaflet": "/dist/libs/leaflet.js",
+      "leaflet.markercluster": "/dist/libs/leaflet.markercluster.js"
     }
   }
-  </script>
-  <script src="dist/app.js" type="module"></script>
-  <script>
-    if ('serviceWorker' in navigator && document.location.href.indexOf('localhost') === -1) {
+    </script>
+    <script src="dist/app.js" type="module"></script>
+    <script>
+      if ('serviceWorker' in navigator && document.location.href.indexOf('localhost') === -1) {
       navigator.serviceWorker.register('sw.js').then(function (reg) {
         reg.onupdatefound = function () {
           var installingWorker = reg.installing;
@@ -78,6 +70,6 @@
           console.error('Error during service worker registration:', e);
         });
     }
-  </script>
-</body>
+    </script>
+  </body>
 </html>

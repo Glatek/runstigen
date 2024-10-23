@@ -1,3 +1,5 @@
+@import url('leaflet/dist/leaflet.css');
+
 :root {
   --reko-colour: hsl(60, 4%, 11%);
   --reko-colour-darker: hsl(99, 54%, 32%);

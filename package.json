@@ -8,9 +8,9 @@
   },
   "scripts": {
     "dev": "http-server . -p 1337",
-    "esbuild:js-deps": "esbuild --bundle --minify --outdir=dist/libs --platform=browser --format=esm src/libs/*.js",
+    "esbuild:js-deps": "esbuild --bundle --loader:.png=file --minify --outdir=dist/libs --platform=browser --format=esm src/libs/*.js",
     "esbuild:js": "esbuild --minify --outdir=dist --platform=browser --format=esm src/*.js src/components/*.js",
-    "esbuild:css": "esbuild --minify --outdir=dist/components src/components/*.css",
+    "esbuild:css": "esbuild --minify --outdir=dist src/*.css src/components/*.css",
     "build": "rimraf dist && npm run esbuild:js-deps && npm run esbuild:js && npm run esbuild:css && workbox generateSW workbox-config.cjs"
   },
   "repository": {
@@ -30,6 +30,8 @@
   "devDependencies": {
     "esbuild": "^0.24.0",
     "http-server": "^14.1.1",
+    "leaflet": "^1.9.4",
+    "leaflet.markercluster": "^1.5.3",
     "rimraf": "^6.0.1",
     "workbox-cli": "^7.1.0"
   },

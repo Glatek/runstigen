@@ -1,5 +1,7 @@
 import { Component, registerComponent } from 'webact';
 
+import 'leaflet';
+
 class LantmaterietKarta extends Component {
   constructor () {
     super(import.meta.url);
@@ -19,16 +21,6 @@ class LantmaterietKarta extends Component {
       zoom: 6
     });
 
-    const apiKey = '34e74c1ea77e95deaceeee7864c5c83';
-
-    /*
-    const lantmateriet = L.tileLayer(`https://api.lantmateriet.se/open/topowebb-ccby/v1/wmts/token/${apiKey}/?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=topowebb&STYLE=default&TILEMATRIXSET=3857&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=image/png`, {
-      maxZoom: 14,
-      minZoom: 0,
-      attribution: '<a href="https://www.lantmateriet.se/sv/Kartor-och-geografisk-information/oppna-data/">Lantmäteriet</a>'
-    });
-    */
-
     const lantmateriet = L.tileLayer.wms('https://mapslantmateriet.havochvatten.se/topowebb/wms/v1?', {
       layers: 'topowebbkartan',
       detectRetina: true
@@ -42,11 +34,8 @@ class LantmaterietKarta extends Component {
 
   render () {
     return `
-      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
-        crossorigin=""/>
-      <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
-      <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+      <link rel="stylesheet" href="dist/libs/leaflet.css" />
+      <link rel="stylesheet" href="dist/libs/leaflet.markercluster.css">
       <style>
       :host,
       #map {
