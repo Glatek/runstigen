@@ -180,6 +180,51 @@
           59.23034
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Bustelund, Gärdet",
+        "data": "bustelund-gardet.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.00168,
+          59.22939
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Bustelund, Sandviken",
+        "data": "bustelund-sanviken-1.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.99319,
+          59.23416
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Bustelund, Sandviken",
+        "data": "bustelund-sanviken-2.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.99300,
+          59.23469
+        ]
+      }
     }
   ]
 }
