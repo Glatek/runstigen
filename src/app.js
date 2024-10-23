@@ -1,42 +1,8 @@
 import './components/lantmateriet-karta.js';
-import './components/glaskogencard-buy.js';
-
-if (document.location.href.includes('folkminnen')) {
-  import('./components/folklore-article.js');
-
-  document.body.classList.add('folkminnen');
-}
+import './components/folklore-article.js';
 
 const overnightCabinIcon = L.icon({
   iconUrl: 'img/overnight-cabin.svg',
-  iconSize: [32, 32],
-  iconAnchor: [16, 16],
-  popupAnchor: [0, -20]
-});
-
-const farmIcon = L.icon({
-  iconUrl: 'img/farm.svg',
-  iconSize: [32, 32],
-  iconAnchor: [16, 16],
-  popupAnchor: [0, -20]
-});
-
-const leanToIcon = L.icon({
-  iconUrl: 'img/lean-to.svg',
-  iconSize: [32, 32],
-  iconAnchor: [16, 16],
-  popupAnchor: [0, -20]
-});
-
-const layByIcon = L.icon({
-  iconUrl: 'img/lay-by.svg',
-  iconSize: [32, 32],
-  iconAnchor: [16, 16],
-  popupAnchor: [0, -20]
-});
-
-const folklorePlaceIcon = L.icon({
-  iconUrl: 'img/folklore-place.svg',
   iconSize: [32, 32],
   iconAnchor: [16, 16],
   popupAnchor: [0, -20]
@@ -58,40 +24,30 @@ function isApple (userAgent = navigator.userAgent) {
 }
 
 function getIconForFeature (feature) {
-  if (feature.properties.type === 'FARM') {
-    return farmIcon;
-  }
-
-  if (feature.properties.type === 'OVERNIGHT_CABIN') {
+  if (feature.properties.type === 'SVENSKA_GODS_OCH_GÅRDAR') {
     return overnightCabinIcon;
-  }
-
-  if (feature.properties.type === 'LEAN_TO') {
-    return leanToIcon;
-  }
-
-  if (feature.properties.type === 'LAY_BY') {
-    return layByIcon;
-  }
-
-  if (feature.properties.type === 'FOLKLORE_PLACE') {
-    return folklorePlaceIcon;
   }
 
   return undefinedIcon;
 }
 
-async function onEachFeature(feature, layer) {
+function getPathWithoutFilename(url) {
+  const urlObj = new URL(url, document.location.href);
+
+  return urlObj.pathname.substring(0, urlObj.pathname.lastIndexOf('/'));
+}
+
+async function onEachFeature(feature, layer, path) {
+  const url = new URL(getPathWithoutFilename(path)+ '/' + feature.properties.data, document.location.href);
+
   if (feature.properties) {
     const popupContent = [];
 
     if ('data' in feature.properties) {
       layer.on('click', () => {
-        console.log('layer click');
-
-        document.dispatchEvent(new CustomEvent('folklore:display', {
+        document.dispatchEvent(new CustomEvent('info:display', {
           detail: {
-            url: 'data/' + feature.properties.data
+            url
           }
         }));
       }, false);
@@ -128,42 +84,26 @@ async function loadMarkersFromJSON({ map, path, color, fillColor }) {
 
   const markers = L.markerClusterGroup();
 
-  L.geoJSON(json, { pointToLayer, onEachFeature }).addTo(markers);
+  L.geoJSON(json, { pointToLayer, onEachFeature: (feature, layer) => onEachFeature(feature, layer, path) }).addTo(markers);
 
   markers.addTo(map);
+
+  return markers;
 }
 
-const loadLayBys = map => loadMarkersFromJSON({
+const loadSgog = map => loadMarkersFromJSON({
   map,
-  path: 'data/layBy.json'
-});
-
-const loadLeanTos = map => loadMarkersFromJSON({
-  map,
-  path: 'data/leanTo.json'
-});
-
-const loadOvernightCabins = map => loadMarkersFromJSON({
-  map,
-  path: 'data/overnightCabins.json'
-});
-
-const loadFolklorePlaces = map => loadMarkersFromJSON({
-  map,
-  path: 'data/folklorePlace.json'
+  path: 'data/sgog/s/collection.json'
 });
 
 async function loadMarkers (map) {
-  if (
-    document.location.pathname === '/folkminnen' ||
-    document.location.hash === '#folkminnen'
-  ) {
-    loadFolklorePlaces(map);
-  } else {
-    loadOvernightCabins(map);
-    loadLeanTos(map);
-    loadLayBys(map);
-  }
+  const sgogMarkers = await loadSgog(map);
+
+  const group = new L.featureGroup([
+    ...sgogMarkers.getLayers()
+  ]);
+
+  map.fitBounds(group.getBounds());
 }
 
 document.querySelector('header button').addEventListener('click', () => {
@@ -180,24 +120,7 @@ document.querySelector('header button').addEventListener('click', () => {
 document.addEventListener('map:ready', () => {
   const { leafletMap: map } = document.querySelector('lantmateriet-karta');
 
-  const glaskogenBounds = new L.LatLngBounds([
-    [59.61628, 12.21927], // Top left
-    [59.36161, 12.60455] // Bottom right
-  ]);
-
-  const polylinePoints = [
-    glaskogenBounds.getNorthWest(),
-    glaskogenBounds.getNorthEast(),
-    glaskogenBounds.getSouthEast(),
-    glaskogenBounds.getSouthWest(),
-    glaskogenBounds.getNorthWest()
-  ];
-
-  L.polyline(polylinePoints, { color: '#BC5800' }).addTo(map);
-
   loadMarkers(map);
-
-  map.setView(glaskogenBounds.getCenter(), 11);
 
   map.on('click', function(ev){
     const { lat, lng } = map.mouseEventToLatLng(ev.originalEvent);

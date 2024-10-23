@@ -1,0 +1,125 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Blomma, Berget",
+        "data": "blomma-berget.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.95887,
+          59.27286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Blomma, Norrsucka",
+        "data": "blomma-norrsucka.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.96770,
+          59.25117
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Blomma, Ögården",
+        "data": "blomma-ogarden.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.96326,
+          59.26669
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Blomma, 1:12 & 1:13",
+        "data": "blomma-1-13.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.96395,
+          59.26735
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Blomma, Nygården",
+        "data": "blomma-nygarden.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.96184,
+          59.27081
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Blomma, Herrgården",
+        "data": "blomma-herrgarden.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.96166,
+          59.27293
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Breviken, Norstuga",
+        "data": "breviken-norstuga.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.10693,
+          59.29648
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Breviken, Där Framme",
+        "data": "breviken-dar-framme.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.10881,
+          59.29172
+        ]
+      }
+    }
+  ]
+}

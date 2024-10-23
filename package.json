@@ -4,32 +4,32 @@
   "version": "0.0.1",
   "description": "En digital karta över Glaskogen",
   "engines": {
-    "node": "^18"
+    "node": "^22"
   },
   "scripts": {
-    "dev": "http-server . -p 1337 -P",
+    "dev": "http-server . -p 1337",
     "esbuild": "esbuild --minify --outdir=dist --platform=browser --format=esm src/*.js src/components/*.js src/components/*.css",
     "build": "rimraf dist && npm run esbuild && workbox generateSW workbox-config.cjs"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/enjikaka/glaskogenkartan.git"
+    "url": "git+https://github.com/Glatek/runstigen.git"
   },
   "keywords": [
-    "glaskogen",
+    "runstigen",
     "karta"
   ],
   "author": "Jeremy Karlsson <jeremy@barlingshult.se>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/enjikaka/glaskogenkartan/issues"
+    "url": "https://github.com/Glatek/runstigen/issues"
   },
-  "homepage": "https://github.com/enjikaka/glaskogenkartan#readme",
+  "homepage": "https://github.com/Glatek/runstigen#readme",
   "devDependencies": {
-    "esbuild": "^0.17.10",
-    "http-server": "^0.12.1",
-    "rimraf": "^4.1.2",
-    "workbox-cli": "^5.1.2"
+    "esbuild": "^0.24.0",
+    "http-server": "^14.1.1",
+    "rimraf": "^6.0.1",
+    "workbox-cli": "^7.1.0"
   },
   "dependencies": {
     "webact": "^0.2.23"

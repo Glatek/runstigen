@@ -1,4 +1,4 @@
-import{registerFunctionComponent as c}from"webact";import"./folklore-article.css";async function p(d){const{$:t,useCSS:n,postRender:a,html:r}=this;await n(),r`
+import{registerFunctionComponent as c}from"webact";async function u(m){const{$:t,useCSS:r,postRender:o,html:a}=this;await r(),a`
     <header>
       <button id="close-button">Stäng ruta</button>
     </header>
@@ -7,10 +7,16 @@ import{registerFunctionComponent as c}from"webact";import"./folklore-article.css
       <p>
         Välj en punkt i kartan för att få en utförlig beskrivning i denna ruta.
       </p>
+      <iframe src=""></iframe>
     </main>
-  `;function i(){t().removeAttribute("open"),t("main").innerHTML=`
+  `;function l(){t().removeAttribute("open"),t("main").innerHTML=`
     <h1>Informationsruta</h1>
     <p>
       V\xE4lj en punkt i kartan f\xF6r att f\xE5 en utf\xF6rlig beskrivning i denna ruta.
     </p>
-    `}a(()=>{t("#close-button").addEventListener("click",()=>i()),document.addEventListener("folklore:display",async o=>{t("main").innerHTML="Laddar...",t().setAttribute("open","open");const m=fetch(o.detail.url).then(e=>e.text()),l=new Promise(e=>setTimeout(()=>e(),500)),[s]=await Promise.all([m,l]),u=document.createRange().createContextualFragment(s);requestAnimationFrame(()=>{t("main").innerHTML="",t("main").appendChild(u)})})})}var g=c(p,{metaUrl:import.meta.url,name:"folklore-article"});export{g as default};
+    `}o(()=>{const e=t("iframe");t("#close-button").addEventListener("click",()=>l());function s(){const n=e.contentDocument||e.contentWindow.document,i=n.createElement("style");i.textContent=`
+        img {
+          display: block;
+          width: 100%;
+        }
+      `,n.querySelector("article").appendChild(i)}document.addEventListener("info:display",async n=>{console.log("info:display",n),t("main p").innerHTML="Laddar...",t().setAttribute("open","open"),t("main p").innerHTML="",e.setAttribute("src",n.detail.url),e.onload=s})})}var p=c(u,{metaUrl:import.meta.url,name:"folklore-article"});export{p as default};
