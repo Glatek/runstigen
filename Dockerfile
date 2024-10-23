@@ -2,7 +2,7 @@ FROM node:22-alpine AS installer
 WORKDIR /app
 
 COPY package*.json .
-RUN npm install
+RUN npm ci
 
 FROM node:22-alpine AS builder
 WORKDIR /app
@@ -10,11 +10,9 @@ WORKDIR /app
 COPY --from=installer /app /app
 COPY . .
 
-RUN npm run build
+RUN node --run build
 
 FROM karlsson/deno-file-server:latest AS release
-WORKDIR /usr/app/src
-
-COPY --from=builder /app .
+COPY --from=builder /app /usr/app/src
 
 EXPOSE 8000
