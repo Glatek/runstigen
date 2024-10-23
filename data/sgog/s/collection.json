@@ -101,8 +101,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          12.10693,
-          59.29648
+          12.106086,
+          59.294975
         ]
       }
     },
@@ -118,6 +118,51 @@
         "coordinates": [
           12.10881,
           59.29172
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Breviken, Nytomt",
+        "data": "breviken-nytomt.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.10729,
+          59.29571
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Breviken, Tomta",
+        "data": "breviken-tomta.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.10727,
+          59.29436
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Breviken, Hogen",
+        "data": "breviken-hogen.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.10299,
+          59.29227
         ]
       }
     }
