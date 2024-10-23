@@ -1,4 +1,9 @@
-import{registerFunctionComponent as c}from"webact";async function u(m){const{$:t,useCSS:r,postRender:o,html:a}=this;await r(),a`
+import{registerFunctionComponent as l}from"webact";function d(i){const t=i.contentDocument||i.contentWindow.document;if(!t)return;const n=t.createElement("style");n.textContent=`
+    img {
+      display: block;
+      width: 100%;
+    }
+  `;const o=t.querySelector("article");o&&o.appendChild(n)}async function m(i){const{$:t,useCSS:n,postRender:o,html:s}=this;await n(),s`
     <header>
       <button id="close-button">Stäng ruta</button>
     </header>
@@ -9,14 +14,4 @@ import{registerFunctionComponent as c}from"webact";async function u(m){const{$:t
       </p>
       <iframe src=""></iframe>
     </main>
-  `;function l(){t().removeAttribute("open"),t("main").innerHTML=`
-    <h1>Informationsruta</h1>
-    <p>
-      V\xE4lj en punkt i kartan f\xF6r att f\xE5 en utf\xF6rlig beskrivning i denna ruta.
-    </p>
-    `}o(()=>{const e=t("iframe");t("#close-button").addEventListener("click",()=>l());function s(){const n=e.contentDocument||e.contentWindow.document,i=n.createElement("style");i.textContent=`
-        img {
-          display: block;
-          width: 100%;
-        }
-      `,n.querySelector("article").appendChild(i)}document.addEventListener("info:display",async n=>{console.log("info:display",n),t("main p").innerHTML="Laddar...",t().setAttribute("open","open"),t("main p").innerHTML="",e.setAttribute("src",n.detail.url),e.onload=s})})}var p=c(u,{metaUrl:import.meta.url,name:"folklore-article"});export{p as default};
+  `,o(()=>{const e=t("iframe"),a=t("main p"),r=t(":host");t("#close-button").addEventListener("click",()=>r.removeAttribute("open")),document.addEventListener("info:display",c=>{e.classList.add("hidden"),r&&r.setAttribute("open","open"),a&&a.remove(),e.onload=()=>{d(e),e.classList.remove("hidden")},e.setAttribute("src",c.detail.url)})})}var f=l(m,{metaUrl:import.meta.url,name:"folklore-article"});export{f as default};

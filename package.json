@@ -8,8 +8,10 @@
   },
   "scripts": {
     "dev": "http-server . -p 1337",
-    "esbuild": "esbuild --minify --outdir=dist --platform=browser --format=esm src/*.js src/components/*.js src/components/*.css",
-    "build": "rimraf dist && npm run esbuild && workbox generateSW workbox-config.cjs"
+    "esbuild:js-deps": "esbuild --bundle --minify --outdir=dist/libs --platform=browser --format=esm src/libs/*.js",
+    "esbuild:js": "esbuild --minify --outdir=dist --platform=browser --format=esm src/*.js src/components/*.js",
+    "esbuild:css": "esbuild --minify --outdir=dist/components src/components/*.css",
+    "build": "rimraf dist && npm run esbuild:js-deps && npm run esbuild:js && npm run esbuild:css && workbox generateSW workbox-config.cjs"
   },
   "repository": {
     "type": "git",

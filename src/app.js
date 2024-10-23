@@ -106,17 +106,6 @@ async function loadMarkers (map) {
   map.fitBounds(group.getBounds());
 }
 
-document.querySelector('header button').addEventListener('click', () => {
-  const buyWindow = document.querySelector('glaskogencard-buy');
-  const open = buyWindow.getAttribute('open');
-
-  if (open) {
-    buyWindow.removeAttribute('open');
-  } else {
-    buyWindow.setAttribute('open', '');
-  }
-})
-
 document.addEventListener('map:ready', () => {
   const { leafletMap: map } = document.querySelector('lantmateriet-karta');
 

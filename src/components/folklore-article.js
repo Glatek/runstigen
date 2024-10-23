@@ -1,5 +1,27 @@
 import { registerFunctionComponent } from 'webact';
 
+function addIframeStyles (iframe) {
+  const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+
+  if (!iframeDocument) {
+    return;
+  }
+
+  const $style = iframeDocument.createElement('style');
+  $style.textContent = `
+    img {
+      display: block;
+      width: 100%;
+    }
+  `;
+
+  const $article = iframeDocument.querySelector('article');
+
+  if ($article) {
+    $article.appendChild($style);
+  }
+}
+
 async function FolkloreArticle (props) {
   const { $, useCSS, postRender, html } = this;
 
@@ -18,60 +40,30 @@ async function FolkloreArticle (props) {
     </main>
   `;
 
-  function closePage() {
-    $().removeAttribute('open');
-    $('main').innerHTML = `
-    <h1>Informationsruta</h1>
-    <p>
-      Välj en punkt i kartan för att få en utförlig beskrivning i denna ruta.
-    </p>
-    `;
-  }
-
   postRender(() => {
     const $iframe = $('iframe');
-    $('#close-button').addEventListener('click', () => closePage());
+    const $p = $('main p');
+    const $host = $(':host');
 
-    function addIframeStyles () {
-      const iframeDocument = $iframe.contentDocument || $iframe.contentWindow.document;
+    $('#close-button').addEventListener('click', () => $host.removeAttribute('open'));
 
-      const style = iframeDocument.createElement('style');
-      style.textContent = `
-        img {
-          display: block;
-          width: 100%;
-        }
-      `;
+    document.addEventListener('info:display', e => {
+      $iframe.classList.add('hidden');
 
-      iframeDocument.querySelector('article').appendChild(style);
-    }
+      if ($host) {
+        $host.setAttribute('open', 'open');
+      }
 
-    document.addEventListener('info:display', async e => {
-      console.log('info:display', e);
-      $('main p').innerHTML = 'Laddar...';
+      if ($p) {
+        $p.remove();
+      }
 
-      $().setAttribute('open', 'open');
+      $iframe.onload = () => {
+        addIframeStyles($iframe);
+        $iframe.classList.remove('hidden');
+      };
 
-      $('main p').innerHTML = '';
       $iframe.setAttribute('src', e.detail.url);
-      $iframe.onload = addIframeStyles;
-
-      /*
-      const htmlPromise = fetch(e.detail.url).then(r => r.text());
-      const animationTimeout = new Promise(r => setTimeout(() => r(), 500));
-
-      const [html] = await Promise.all([
-        htmlPromise,
-        animationTimeout
-      ]);
-
-      const fragment = document.createRange().createContextualFragment(html);
-
-      requestAnimationFrame(() => {
-        $('main').innerHTML = '';
-        $('main').appendChild(fragment);
-      });
-      */
     });
   });
 }
