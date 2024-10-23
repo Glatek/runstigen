@@ -165,6 +165,21 @@
           59.29227
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Bustelund, Björkås",
+        "data": "bustelund-bjorkas.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.00153,
+          59.23034
+        ]
+      }
     }
   ]
 }
