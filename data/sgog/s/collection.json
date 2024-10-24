@@ -345,6 +345,66 @@
           59.20694
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Ekenäs, Fridhem",
+        "data": "ekenas-fridhem.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.04564,
+          59.21110
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Ekenäs, Boden",
+        "data": "ekenas-boden.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.04443,
+          59.21735
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Ekenäs, Granbo",
+        "data": "ekenas-granbo.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.05124,
+          59.21768
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Ekenäs, Löfås",
+        "data": "ekenas-lofas.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.04415,
+          59.21879
+        ]
+      }
     }
   ]
 }
