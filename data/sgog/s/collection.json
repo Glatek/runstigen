@@ -225,6 +225,66 @@
           59.23469
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Bustelund, Toverud",
+        "data": "bustelund-toverud-1.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.00526,
+          59.22722
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Bustelund, Toverud",
+        "data": "bustelund-toverud-2.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.00636,
+          59.22777
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Bustelund, Tone",
+        "data": "bustelund-tone.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.98452,
+          59.23749
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Bustelund, Nygården",
+        "data": "bustelund-nygarden.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.00693,
+          59.22719
+        ]
+      }
     }
   ]
 }
