@@ -285,6 +285,66 @@
           59.22719
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Ed, Långåna",
+        "data": "ed-langana.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.00959,
+          59.36380
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Ed, 1:42",
+        "data": "ed-1-42.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.00712,
+          59.35229
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Ekenäs, Byggningen",
+        "data": "ekenas-byggningen.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.04477,
+          59.21611
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "SVENSKA_GODS_OCH_GÅRDAR",
+        "title": "Ekenäs, Där väst i",
+        "data": "ekenas-dar-vast-i.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.03875,
+          59.20694
+        ]
+      }
     }
   ]
 }
