@@ -8,7 +8,8 @@
   },
   "scripts": {
     "build": "make build",
-    "serve": "make serve"
+    "serve": "make serve",
+    "dev": "make -j2 serve watch"
   },
   "repository": {
     "type": "git",
