@@ -71,11 +71,9 @@ p:not(:first-child) {
   text-indent: calc(var(--golden-ratio) * 1em);
 }
 
-iframe {
-  flex: 1;
-  transition: opacity 500ms ease;
-  opacity: 1;
-  border: 0;
+article img {
+  display: block;
+  width: 100%;
 }
 
 .hidden {

@@ -1,17 +1,14 @@
 {
-  "name": "glaskogenkartan",
+  "name": "runstigem",
   "type": "module",
   "version": "0.0.1",
-  "description": "En digital karta över Glaskogen",
+  "description": "Historiekarta",
   "engines": {
     "node": "^22"
   },
   "scripts": {
-    "dev": "http-server . -p 1337",
-    "esbuild:js-deps": "esbuild --bundle --loader:.png=file --minify --outdir=dist/libs --platform=browser --format=esm src/libs/*.js",
-    "esbuild:js": "esbuild --minify --outdir=dist --platform=browser --format=esm src/*.js src/components/*.js",
-    "esbuild:css": "esbuild --minify --outdir=dist src/*.css src/components/*.css",
-    "build": "rimraf dist && npm run esbuild:js-deps && npm run esbuild:js && npm run esbuild:css && workbox generateSW workbox-config.cjs"
+    "build": "make build",
+    "serve": "make serve"
   },
   "repository": {
     "type": "git",

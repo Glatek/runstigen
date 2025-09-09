@@ -1,9 +1,9 @@
-import{registerFunctionComponent as l}from"webact";function d(i){const t=i.contentDocument||i.contentWindow.document;if(!t)return;const n=t.createElement("style");n.textContent=`
+import{registerFunctionComponent as d}from"webact";function g(o){const t=o.contentDocument||o.contentWindow.document;if(!t)return;const e=t.createElement("style");e.textContent=`
     img {
       display: block;
       width: 100%;
     }
-  `;const o=t.querySelector("article");o&&o.appendChild(n)}async function m(i){const{$:t,useCSS:n,postRender:o,html:s}=this;await n(),s`
+  `;const n=t.querySelector("article");n&&n.appendChild(e)}async function p(o){const{$:t,useCSS:e,postRender:n,html:m}=this;await e(),m`
     <header>
       <button id="close-button">Stäng ruta</button>
     </header>
@@ -12,6 +12,7 @@ import{registerFunctionComponent as l}from"webact";function d(i){const t=i.conte
       <p>
         Välj en punkt i kartan för att få en utförlig beskrivning i denna ruta.
       </p>
-      <iframe src=""></iframe>
+      <hr>
+      <div id="article-content"></div>
     </main>
-  `,o(()=>{const e=t("iframe"),a=t("main p"),r=t(":host");t("#close-button").addEventListener("click",()=>r.removeAttribute("open")),document.addEventListener("info:display",c=>{e.classList.add("hidden"),r&&r.setAttribute("open","open"),a&&a.remove(),e.onload=()=>{d(e),e.classList.remove("hidden")},e.setAttribute("src",c.detail.url)})})}var f=l(m,{metaUrl:import.meta.url,name:"folklore-article"});export{f as default};
+  `,n(()=>{const a=t("main p"),i=t(":host"),c=t("#article-content");t("#close-button").addEventListener("click",()=>i.removeAttribute("open")),document.addEventListener("info:display",async l=>{i&&i.setAttribute("open","open"),a&&a.remove();const u=await(await fetch(l.detail.url)).text(),r=new URL(l.detail.url,document.location.href);r.pathname=r.pathname.replace(".html",".png"),c.innerHTML=u;const s=c.querySelector("img");s&&(s.src=r.toString())})})}var y=d(p,{metaUrl:import.meta.url,name:"folklore-article"});export{y as default};

@@ -36,20 +36,19 @@ async function FolkloreArticle (props) {
       <p>
         Välj en punkt i kartan för att få en utförlig beskrivning i denna ruta.
       </p>
-      <iframe src=""></iframe>
+      <hr>
+      <div id="article-content"></div>
     </main>
   `;
 
   postRender(() => {
-    const $iframe = $('iframe');
     const $p = $('main p');
     const $host = $(':host');
+    const $articleContent = $('#article-content');
 
     $('#close-button').addEventListener('click', () => $host.removeAttribute('open'));
 
-    document.addEventListener('info:display', e => {
-      $iframe.classList.add('hidden');
-
+    document.addEventListener('info:display', async e => {
       if ($host) {
         $host.setAttribute('open', 'open');
       }
@@ -58,12 +57,20 @@ async function FolkloreArticle (props) {
         $p.remove();
       }
 
-      $iframe.onload = () => {
-        addIframeStyles($iframe);
-        $iframe.classList.remove('hidden');
-      };
+      const res = await fetch(e.detail.url);
+      const html = await res.text();
 
-      $iframe.setAttribute('src', e.detail.url);
+      const url = new URL(e.detail.url, document.location.href);
+
+      url.pathname = url.pathname.replace('.html', '.png');
+
+      $articleContent.innerHTML = html;
+
+      const $img = $articleContent.querySelector('img');
+
+      if ($img) {
+        $img.src = url.toString();
+      }
     });
   });
 }
