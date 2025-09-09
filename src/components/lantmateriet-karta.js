@@ -1,8 +1,11 @@
 import { Component, registerComponent } from 'webact';
 
 import 'leaflet';
+import styles from 'leaflet/dist/leaflet.css?inline';
+import markerClusterStyles from 'leaflet.markercluster/dist/MarkerCluster.css?inline';
+import markerClusterDefaultStyles from 'leaflet.markercluster/dist/MarkerCluster.Default.css?inline';
 
-class LantmaterietKarta extends Component {
+export class LantmaterietKarta extends Component {
   constructor () {
     super(import.meta.url);
 
@@ -34,9 +37,10 @@ class LantmaterietKarta extends Component {
 
   render () {
     return `
-      <link rel="stylesheet" href="dist/libs/leaflet.css" />
-      <link rel="stylesheet" href="dist/libs/leaflet.markercluster.css">
       <style>
+      ${styles} 
+      ${markerClusterStyles}
+      ${markerClusterDefaultStyles}
       :host,
       #map {
         display: block;

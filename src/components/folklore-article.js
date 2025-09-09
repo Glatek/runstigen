@@ -1,42 +1,20 @@
 import { registerFunctionComponent } from 'webact';
-
-function addIframeStyles (iframe) {
-  const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-
-  if (!iframeDocument) {
-    return;
-  }
-
-  const $style = iframeDocument.createElement('style');
-  $style.textContent = `
-    img {
-      display: block;
-      width: 100%;
-    }
-  `;
-
-  const $article = iframeDocument.querySelector('article');
-
-  if ($article) {
-    $article.appendChild($style);
-  }
-}
+import style from './folklore-article.css?inline';
 
 async function FolkloreArticle (props) {
-  const { $, useCSS, postRender, html } = this;
+  const { $, css, postRender, html } = this;
 
-  await useCSS();
+  css`${style}`;
 
   html`
     <header>
+      <strong>Informationsruta</strong>
       <button id="close-button">Stäng ruta</button>
     </header>
     <main>
-      <h1>Informationsruta</h1>
       <p>
         Välj en punkt i kartan för att få en utförlig beskrivning i denna ruta.
       </p>
-      <hr>
       <div id="article-content"></div>
     </main>
   `;

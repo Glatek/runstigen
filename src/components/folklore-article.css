@@ -1,15 +1,11 @@
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-@import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Muli:wght@300;400');
-
 :host {
-  font-family: 'EB Garamond', serif;
   position: fixed;
   top: calc(var(--golden-ratio) * 1em);
   left: calc(var(--golden-ratio) * 1em);
   right: calc(var(--golden-ratio) * 1em);
   bottom: calc(var(--golden-ratio) * 1em);
   background-color: #fff;
-  padding: calc(var(--golden-ratio) * 2em) calc(var(--golden-ratio) * 1em);
+  padding: 0 calc(var(--golden-ratio) * 1em);
   z-index: 1300;
   transform: translateY(110%);
   transition: opacity 1s ease, transform 1s ease;
@@ -19,7 +15,6 @@
   box-shadow: none;
   content-visibility: auto;
   will-change: transform;
-  font-size: 1rem;
 }
 
 :host([open]) {
@@ -41,17 +36,19 @@
   padding: 0.5em;
 }
 
+header {
+  border-bottom: 1px solid #555;
+  padding: 1em;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
 main {
   height: 100%;
   display: flex;
   flex-flow: column nowrap;
-}
-
-h1 {
-  text-align: center;
-  font-size: 1.2rem;
-  margin: 0;
-  margin-block-end: 1rem;
 }
 
 p::first-line {
@@ -93,10 +90,9 @@ article img {
     bottom: 0;
     padding: 0;
     overflow-y: auto;
-    font-size: 1.1rem;
   }
 
-  header {
+  #close-button {
     display: none;
   }
 

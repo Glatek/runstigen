@@ -1,7 +1,7 @@
-import 'leaflet';
+import L from 'leaflet';
 import 'leaflet.markercluster';
 
-import './components/lantmateriet-karta.js';
+import { LantmaterietKarta } from './components/lantmateriet-karta.js';
 import './components/folklore-article.js';
 
 const overnightCabinIcon = L.icon({
@@ -26,22 +26,22 @@ function isApple (userAgent = navigator.userAgent) {
   return Boolean(iPad || iPhone || Safari);
 }
 
-function getIconForFeature (feature) {
-  if (feature.properties.type === 'SVENSKA_GODS_OCH_GÅRDAR') {
+function getIconForFeature (feature: GeoJSON.Feature) {
+  if (feature.properties?.type === 'SVENSKA_GODS_OCH_GÅRDAR') {
     return overnightCabinIcon;
   }
 
   return undefinedIcon;
 }
 
-function getPathWithoutFilename(url) {
+function getPathWithoutFilename(url: string) {
   const urlObj = new URL(url, document.location.href);
 
   return urlObj.pathname.substring(0, urlObj.pathname.lastIndexOf('/'));
 }
 
-async function onEachFeature(feature, layer, path) {
-  const url = new URL(getPathWithoutFilename(path)+ '/' + feature.properties.data, document.location.href);
+async function onEachFeature(feature: GeoJSON.Feature, layer: L.Layer, path: string) {
+  const url = new URL(getPathWithoutFilename(path)+ '/' + feature.properties?.data, document.location.href);
 
   if (feature.properties) {
     const popupContent = [];
@@ -79,11 +79,11 @@ async function onEachFeature(feature, layer, path) {
   }
 }
 
-async function loadMarkersFromJSON({ map, path, color, fillColor }) {
+async function loadMarkersFromJSON(map: L.Map, path: string, color?: string, fillColor?: string) {
   const response = await fetch(path);
   const json = await response.json();
 
-  const pointToLayer = (feature, latlng) => L.marker(latlng, { icon: getIconForFeature(feature) });
+  const pointToLayer = (feature: GeoJSON.Feature, latlng: L.LatLng) => L.marker(latlng, { icon: getIconForFeature(feature) });
 
   const markers = L.markerClusterGroup();
 
@@ -94,15 +94,15 @@ async function loadMarkersFromJSON({ map, path, color, fillColor }) {
   return markers;
 }
 
-const loadSgog = map => loadMarkersFromJSON({
+const loadSgog = (map: L.Map) => loadMarkersFromJSON(
   map,
-  path: 'data/sgog/s/collection.json'
-});
+  'data/sgog/s/collection.json'
+);
 
-async function loadMarkers (map) {
+async function loadMarkers (map: L.Map) {
   const sgogMarkers = await loadSgog(map);
 
-  const group = new L.featureGroup([
+  const group = new L.FeatureGroup([
     ...sgogMarkers.getLayers()
   ]);
 
@@ -110,12 +110,18 @@ async function loadMarkers (map) {
 }
 
 document.addEventListener('map:ready', () => {
-  const { leafletMap: map } = document.querySelector('lantmateriet-karta');
+  const map = document.querySelector('lantmateriet-karta');
 
-  loadMarkers(map);
+  if (map instanceof LantmaterietKarta) {
+    const { leafletMap } = map;
 
-  map.on('click', function(ev){
-    const { lat, lng } = map.mouseEventToLatLng(ev.originalEvent);
-    console.log(JSON.stringify([lng, lat]));
-  });
+    if (leafletMap) {
+      loadMarkers(leafletMap);
+
+      leafletMap.on('click', event => {
+        const { lat, lng } = leafletMap.mouseEventToLatLng(event.originalEvent);
+        console.log(JSON.stringify([lng, lat]));
+      });
+    }
+  }
 });
